@@ -101,7 +101,7 @@ def find_matches(person1, person2):
     return (pair_names,dicctionary[pair_names])   #('ASTRID-RENE', 2)
 
 def get_results(records_list):
-    assert type(records_list)==list, "records_list must be a list"
+    assert type(records_list)==list, "pararm of function get_results must be a list"
     n_records=len(records_list)
     
     result=[]
@@ -113,7 +113,7 @@ def get_results(records_list):
     return result #[('ASTRID-RENE', 2), ('ANDRES-RENE', 2), ('ANDRES-ASTRID', 3)]
 
 def results_to_string(results):
-    assert type(results)==list , "results must be a list"
+    assert type(results)==list , "param of results_to_string must be a list"
     
     st=""
     n_results=len(results)
