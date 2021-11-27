@@ -9,7 +9,7 @@ def format_validator(time):
     groups=re.search(pattern, time)
     
     if(not groups):
-        raise ValueError("Date format is incorrect, please check this ==> "+time) 
+        raise ValueError("Day record format is incorrect, please check this ==> "+"\033[1;31;48m"+time+"\033[1;33;48m") 
 
     groups=groups.group(1,2,3,4,5)
    
@@ -27,6 +27,11 @@ def format_validator(time):
 
 def is_a_match(start1, end1,start2,end2):
     
+    assert type(start1)==datetime,"{} {}".format(start1, "Must be type of datetime")
+    assert type(end1)==datetime,"{} {}".format(end1, "Must be type of datetime")
+    assert type(start2)==datetime,"{} {}".format(start2, "Must be type of datetime")
+    assert type(end2)==datetime,"{} {}".format(end2, "Must be type of datetime")
+    
     if(start1>end1):
         raise ValueError("Not valid range: start :{} is greather than end :{}".format(start1.strftime("%H:%M"), end1.strftime("%H:%M")))
     if(start2>end2):
@@ -39,11 +44,11 @@ def is_a_match(start1, end1,start2,end2):
     else:
         return True
     
-def file_to_records(filename="records.txt"):
+def file_to_records(filename):
     try:
         file=open(filename,"r")
     except OSError:
-        raise RuntimeError("Failed to open {}".format(filename))
+        raise RuntimeError("\033[1;31;48m"+"Failed to open {}".format(filename))
     
 
     records_list=[]
@@ -75,7 +80,9 @@ def file_to_records(filename="records.txt"):
 
 
 def find_matches(person1, person2):
-  
+    assert type(person1)==dict and len(person1.keys())!=0, "{} {}".format(person1,"First param should be a non-empty dictionary")
+    assert type(person2)==dict and len(person2.keys())!=0, "{} {}".format(person2,"Second param should be a non-empty dictionary")
+    
     dicctionary=dict()
     name1=list(person1.keys())[0]
     name2=list(person2.keys())[0]
@@ -127,6 +134,3 @@ results=get_results(records)
 output=results_to_string(results)
 print(output)
 
-# print(results)
-
-# results_to_string([])
