@@ -1,9 +1,16 @@
 from logModule.functions import *
 
-if __name__ == "__main__":
-    input="records.txt"
+def main(input):
+   
     records=file_to_records(input)
     results=get_results(records)
     output=results_to_string(results)
-    print(output)
+    return output
+    
 
+
+if __name__ == "__main__":
+    
+    filename="records.txt"
+    output=main(filename)
+    print(output)
