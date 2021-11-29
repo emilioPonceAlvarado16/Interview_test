@@ -36,14 +36,15 @@ def format_validator(day_record:str):
     if(start_time>end_time):
         raise RuntimeError("\033[1;31;48m"+"Not valid range: start: {} is greather than end: {}".format(start_time.strftime("%H:%M"), end_time.strftime("%H:%M"))+"\033[1;33;48m")
 
-   
+
     return day,start_time,end_time
 
 def is_a_match(start1:datetime, end1:datetime,start2:datetime,end2:datetime)->bool:
     """
         This function will compare two datetime ranges
         and determine if is a match or not
-        Ex: range1: 10:00-12:00 && range2:11:00-13:00 will return True
+        Ex1: range1: 10:00-12:00 && range2:11:00-13:00 will return True
+        Ex2: range1: 10:00-12:00 && range2:12:02-13:00 will return False
 
     """
     if(start2<start1):
@@ -71,7 +72,7 @@ def file_to_records(filename:str)->list:
             * raises RunTimeError:
                 - If there is a problem when reading the file: Non-existing file, blocked, no access, etc.
                 - RunTimeError catched from the format_validator function.
-                - If there are two or more employees with the same name.
+                - If there are two or more records with the same within the same person.
 
 
     """
@@ -93,10 +94,14 @@ def file_to_records(filename:str)->list:
         if(line!="\n"):
             line_=line.strip("\n")
             line_l=line.split("=")
+            
             n_line=len(line_l)
+
+            if(n_line!=2):
+                raise RuntimeError("\033[1;33;48m"+"Wrong format of the log, please check {}".format(line))
             name=line_l[0]
             record=line_l[1]
-            if(n_line!=2 or len(name)==0 or name=="\n" or len(record)==0 or record=="\n"): 
+            if(len(name)==0 or name=="" or len(record)==0 or record==""): 
                 raise RuntimeError("\033[1;33;48m"+"Wrong format of the log, please check {}".format(line))
             pre_register[name]= dict()
            

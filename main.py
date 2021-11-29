@@ -11,6 +11,7 @@ def main(input):
 
 if __name__ == "__main__":
     
-    filename="records.txt"
+    filename="./logs/records.txt"
+    #filename="./logs/records1.txt"
     output=main(filename)
     print(output)
