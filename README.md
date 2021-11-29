@@ -2,7 +2,7 @@
 
 ## Overview of the solution.
 
-Let's show an example of the input and output of this program.
+Lets show an example of the input and output of this program.
 
 INPUT<br />
 RENE=MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00- 21:00<br />
@@ -20,14 +20,14 @@ With this solution, we can get the amount of times where a pair of employees hav
 
 There are the necessary validations for the different kind of inputs, error handlers, and automated tests using the standard library unittest.
 
-## Explanation of the architecture.
+## Explanation of the architecture
 
 
-    main.py is the main program
-    the logModule directory is where all the functions are.
-    the logs directory is where all the records.txt are, and those can be the input for the main.
-    the unit_tests directory contains the test_logModule_main.py, which is the program for the automated tests.
-    the fake_logs directory contains all the fake records that will be used for testing purposes.
+main.py is the main program
+the logModule directory is where all the functions are.
+the logs directory is where all the records.txt are, and those can be the input for the main.
+the unit_tests directory contains the test_logModule_main.py, which is the program for the automated tests.
+the fake_logs directory contains all the fake records that will be used for testing purposes.
 
     logModule/functions.py we will find:
         1. find_matches 
